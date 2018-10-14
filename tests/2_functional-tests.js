@@ -63,7 +63,7 @@ suite('Functional Tests', () => {
         .send()
         .end((err, res) => {
           assert.equal(res.status, 200);
-          assert.equal(res.body, 'Missing title');
+          assert.equal(res.text, 'Missing title');
           done();
         });
       });
@@ -93,10 +93,10 @@ suite('Functional Tests', () => {
       
       test('Test GET /api/books/[id] with id not in db', (done) =>{
         chai.request(server)
-        .get('/api/books/000000000000000000000000')
+        .get('/api/books/1234')
         .end((err, res) => {
           assert.equal(res.status, 200);
-          assert.equal(res.body, 'That book does not exist');
+          assert.equal(res.text, 'That book does not exist');
           done();
         });
       });
